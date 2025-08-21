@@ -1,7 +1,9 @@
 //bring hashmap in the scope
 use std::collections::{HashMap};
+use std::io;
 
-fn vowel_to_hash(strg: &str) -> HashMap<char,bool>{
+
+fn vowel_to_hash() -> HashMap<char,bool>{
 
 // create an array of vowels
     let vowel = ['a','e','i','o','u', 'A','E','I','O','U'];
@@ -33,7 +35,7 @@ fn pig_latin_word(word: &str, vowel_map:&HashMap<char,bool>) -> String{
     } else {
         let first_len = first_word.len_utf8();
         let rest_word = &word[first_len..];
-        return format!("{rest_word}-{}ay", first_len);
+        return format!("{rest_word}-{}ay", first_word);
     }
 
 }
@@ -54,6 +56,18 @@ fn main() {
     // let first = word.chars().next().unwrap();
     // let first_word = first.len_utf8();
     // println!("{:?} {}",first,first_word);
+    let vowel_map = vowel_to_hash();
+
+    println!("Enter a sentence or a word to convert it to pig latin");
+    let mut line = String::new();
+
+    io::stdin().read_line(&mut line).expect("Failed to read the line");
+
+    let converted = pig_latin_sentence(line.trim(), &vowel_map);
+
+    println!("Pig latin: {:?}", converted);
+
+
 
 
 }
