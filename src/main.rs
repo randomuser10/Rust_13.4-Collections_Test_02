@@ -14,7 +14,7 @@ fn vowel_to_hash(strg: &str) -> HashMap<char,bool>{
     map
 }
 
-fn pig_latin_word(word: &str, vowel_map:HashMap<char,bool>) -> String{
+fn pig_latin_word(word: &str, vowel_map:&HashMap<char,bool>) -> String{
     //get the first letter
     let mut chars = word.chars();
     let first_word = match chars.next() {
@@ -36,6 +36,14 @@ fn pig_latin_word(word: &str, vowel_map:HashMap<char,bool>) -> String{
         return format!("{rest_word}-{}ay", first_len);
     }
 
+}
+
+fn pig_latin_sentence(input: &str, vowel_map: &HashMap<char,bool>) -> String{
+    input.
+    split_whitespace().
+    map(|w|pig_latin_word(w,vowel_map)).
+    collect::<Vec<String>>().
+    join(" ")
 }
 
 
